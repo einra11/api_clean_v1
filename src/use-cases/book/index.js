@@ -4,21 +4,30 @@ import bookDB from '../../data-access/books/index'
 
 //Local functions
 import getAllBooks from './get-all-books';
-import registerBook from './register-book';
-import removeBook from './remove-book';
-import updateBook from './update-book';
+// import createBook from './register-book';
+// import removeBook from './remove-book';
+// import updateBook from './update-book';
 
 //Initialize Use Cases Section
-export const getAllBooksUseCase = getAllBooks({bookDB})
-export const updateBookUseCase = registerBook({bookDB})
-export const removeBookUseCase = removeBook({bookDB})
-export const updateBookUseCase = updateBook({bookDB})
+const getAllBooksUseCase = getAllBooks({bookDB})
+// const createBookUseCase = createBook({bookDB})
+// const removeBookUseCase = removeBook({bookDB})
+// const updateBookUseCase = updateBook({bookDB})
 
 
 //Export interface 'services'
-export const services = Object.freeze({
+const services = Object.freeze({
     getAllBooksUseCase,
-    updateBookUseCase,
-    removeBookUseCase,
-    updateBookUseCase,
+    // createBookUseCase,
+    // removeBookUseCase,
+    // updateBookUseCase,
 });
+
+export default services;
+export {
+    getAllBooksUseCase,
+    // createBookUseCase,
+    // removeBookUseCase,
+    // updateBookUseCase,
+ };
+

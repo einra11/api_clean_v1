@@ -1,4 +1,4 @@
-const makeExpressCallback = (controller) => {
+export const makeExpressCallback = (controller) => {
   return (req, res) => {
     const httpRequest = {
       body: req.body,
@@ -28,4 +28,4 @@ const makeExpressCallback = (controller) => {
   };
 };
 
-module.exports = makeExpressCallback;
+export default makeExpressCallback;

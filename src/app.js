@@ -4,7 +4,7 @@ import cors from 'cors';
 export const app = express();
 
 //Route imports section
-import bookRoute from './routes/book/index'
+import {bookRoute, bookRouter} from './routes/book/index'
 //--------------------------
 
 const port = 4032;
@@ -20,7 +20,7 @@ export var server = app.listen(port, () => {
 });
 
 //Initialize routes
-app.use("/books", bookRoute);
+app.use("/api/books", bookRoute);
 //--------------------------
 
 app.use(async (req, res) => {
