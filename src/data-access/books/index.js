@@ -1,6 +1,8 @@
 import {connects} from "../index";
 import bookQuery from "./query";
 
-const bookDB = bookQuery ({connects})
+import model from "../models/index"
+
+const bookDB = bookQuery ({connects, model})
 
 export default bookDB

@@ -23,7 +23,6 @@ const getAllBooks = ({ getAllBooksUseCase }) => {
           body: { bookList },
         };
       } catch (e) {
-        // TODO: Error logging
         console.log(e);
         return {
           headers,
