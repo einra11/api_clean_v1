@@ -5,6 +5,7 @@ export const app = express();
 
 //Route imports section
 import {bookRoute, bookRouter} from './routes/book/index'
+import {userRoute, userRouter} from './routes/user/index'
 //--------------------------
 
 const port = 4032;
@@ -21,6 +22,8 @@ export var server = app.listen(port, () => {
 
 //Initialize routes
 app.use("/api/books", bookRoute);
+app.use("/api/users", userRoute);
+
 //--------------------------
 
 app.use(async (req, res) => {
