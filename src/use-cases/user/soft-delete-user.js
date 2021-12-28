@@ -1,6 +1,7 @@
 const softDeleteUser = ({ userDb}) => {
     return async function patch( data ) {
-        
+
+       
 
         const res = await userDb.softDelete({data});
 

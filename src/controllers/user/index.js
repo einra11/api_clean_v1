@@ -1,20 +1,20 @@
 //Controller's dependent are use-cases
 import { 
     loginUserUseCase,
-    registerUserUseCase,
-    softDeleteUserCase,
+    createUserUseCase,
+    softDeleteUserUseCase,
     } from "../../use-cases/user/index"
     
     //Local Functions
-    import getAllBooks from './get-all-books';
-    import createBook from './register-book';
-    import updateBook from './update-book';
+    import login from './login';
+    import register from './register';
+    import softDelete from './soft-delete';
     
     
     //Initialize Controllers Section
-    const loginUserController = getAllBooks({loginUserUseCase});
-    const registerUserController= createBook({registerUserUseCase});
-    const softDeleteUserController = updateBook({softDeleteUserCase});
+    const loginUserController = login({loginUserUseCase});
+    const registerUserController= register({createUserUseCase});
+    const softDeleteUserController = softDelete({softDeleteUserUseCase});
     
     
     

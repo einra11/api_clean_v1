@@ -5,19 +5,20 @@ const createUser = ({ userDb, registerUser_ENTITY }) => {
 
         let result = {};
 
-        let resdata = await registerUser_ENTITY({ data });
-
-        const {serial} = resdata;
+        let entity = await registerUser_ENTITY({ data });
        
+        const {email} = data;
 
-        const isExisting = await userDb.isExisting({serial});
+        const isExisting = await userDb.isExisting({email});
 
 
         if (isExisting.rowCount > 0){
             throw new Error("User already exists")
         }
+
+        console.log(entity)
         
-        const res = await userDb.createUser({resdata});
+        const res = await userDb.createUser({entity});
 
         if (res) {
             result.email = res.email;

@@ -9,9 +9,9 @@ import createUser from './register-user';
 import softDeleteUser from './soft-delete-user';
 
 //Initialize Use Cases Section
-const loginUserUseCase = loginUser({bookDB, loginUSER_ENTITY});
-const createUserUseCase = createUser({bookDB, registerUser_ENTITY});
-const softDeleteUserUseCase = softDeleteUser({bookDB, updateBook_ENTITY});
+const loginUserUseCase = loginUser({userDb, loginUSER_ENTITY});
+const createUserUseCase = createUser({userDb, registerUser_ENTITY});
+const softDeleteUserUseCase = softDeleteUser({userDb});
 // console.log(updateBook)
 
 

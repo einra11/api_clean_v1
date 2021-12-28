@@ -7,23 +7,27 @@ const userQuery = ({connects, model}) => {
         getUserId
       });
 
-    async function loginUser({}){
-        try {
-            const conn = await connects()
-
-            const response = await new Promise((resolve) =>{
-               //Encrypted pwd
-            })
-            console.log('\x1b[32m%s\x1b[0m', 'DATA_ACCESS TRIGGERED') 
-            return response
-        } catch (error) {
-            console.log("Error: ", error);
+    async function loginUser({ entity }){
+       try {
+          const conn = await connects();
+          const result = await new Promise((resolve) => {
+            let sql = `SELECT email, password FROM users WHERE "email" = $1`;
+            let params = [entity.email];
+            conn.query(sql, params, (err, res) => {
+                conn.end();
+              if (err) resolve(err);
+              resolve(res);
+            });
+          });
+          return result;
+        } catch (e) {
+          console.log("Error: ", e);
         }
     }
 
-    async function createUser({ resdata }){
+    async function createUser({ entity }){
         try {
-            const {email, password, role, status} = resdata;
+            const {email, password, role, status} = entity;
             const User = model.UserModel;
             const response = await User.create({
                 email: email,
@@ -37,19 +41,17 @@ const userQuery = ({connects, model}) => {
         }
     }
 
-    async function softDelete ({resdata}){
-        const {status} = resdata;
-        const bookId = await isExisting({resdata})
-
-        if (bookId){
+    async function softDelete ({data}){
+     
+        const {id} = data;
             try {
                 // console.log(bookId.rows[0].id);
-                const Book = model.BookModel;
-                const response = await Book.update({
-                    status : status,
+                const User = model.UserModel;
+                const response = await User.update({
+                    status : "inactive",
                 },
                 {
-                    where: {id: bookId.rows[0].id},
+                    where: {id: id},
                 }
               );
               return response;
@@ -57,7 +59,6 @@ const userQuery = ({connects, model}) => {
             } catch (error) {
                 console.log("Error: ", error);
             }
-        }
 
        
     }

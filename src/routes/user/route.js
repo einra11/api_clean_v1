@@ -4,11 +4,11 @@ import {
     softDeleteUserController
 } from "../../controllers/user/index"
 
-const userRoutes = ({bookRouter, makeExpressCallback}) => {
-    bookRouter.get("/", makeExpressCallback( loginUserController,));
-    bookRouter.post("/", makeExpressCallback( registerUserController,));
-    bookRouter.patch("/:id", makeExpressCallback(softDeleteUserController));
-    return bookRouter;
+const userRoutes = ({userRouter, makeExpressCallback}) => {
+    userRouter.get("/", makeExpressCallback( loginUserController,));
+    userRouter.post("/", makeExpressCallback( registerUserController));
+    userRouter.patch("/:id", makeExpressCallback(softDeleteUserController));
+    return userRouter;
 }
 
 export default userRoutes;

@@ -1,29 +1,28 @@
+import jwt from '../../helpers/jwt'
 const loginUser = ({ userDb, loginUSER_ENTITY }) => {
-    return async function list() {
+    return async function list(data) {
+      const {email, password} = data;
 
-      let resdata = await loginUSER_ENTITY({ data });
+      let entity = await loginUSER_ENTITY({data});
+      let token = "";
+      let result = {}
 
-      let userData = [];
-      const result = await userDb.loginUser({resdata});
-  
-      // console.log(result)
+      const res = await userDb.loginUser({entity})
 
-      for (let data of result.rows) {
-        const dataValue = {};
-        
-        dataValue.id = data.id;
-        dataValue.email = data.email;
-        dataValue.password = data.password;
-        dataValue.role = data.role;
-        dataValue.status = data.status;
+      if (res.rows.length == 1){
+        let row = res.rows[0];
+        let email = row.email;
+        token = jwt.issue({email: email}, '1d')
 
-        userData.push(dataValue)
-       
+        result.email = email;
+        result.token = token;
+
+        return {
+          message: "Successfully logged in",
+          user : result, 
+        }
       }
 
-      console.log('\x1b[32m%s\x1b[0m', "USE-CASE-TRIGGERED")
-  
-      return userData;
     };
   };
 

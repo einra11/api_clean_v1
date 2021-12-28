@@ -1,10 +1,10 @@
 const updateBook = ({ bookDB, updateBook_ENTITY }) => {
     return async function patch( data ) {
         
-        let resdata = await updateBook_ENTITY({ data });
+        let entity = await updateBook_ENTITY({ data });
         let result = {};
 
-        const res = await bookDB.updateBook({resdata});
+        const res = await bookDB.updateBook({entity});
 
         if (res) {
             result.title = res.title;
