@@ -1,4 +1,4 @@
-const userQuery = ({connects, model}) => {
+const userQuery = ({connects, model, encryptPasswordService, comparePasswordService}) => {
     return Object.freeze({
         loginUser,
         createUser,
@@ -10,7 +10,10 @@ const userQuery = ({connects, model}) => {
     async function loginUser({ entity }){
        try {
           const conn = await connects();
-          const result = await new Promise((resolve) => {
+          const {password} = entity;
+          let result = {}
+
+          const response = await new Promise((resolve) => {
             let sql = `SELECT email, password FROM users WHERE "email" = $1`;
             let params = [entity.email];
             conn.query(sql, params, (err, res) => {
@@ -19,7 +22,22 @@ const userQuery = ({connects, model}) => {
               resolve(res);
             });
           });
-          return result;
+          // console.log(response.rows[0].password, password);
+          
+          let encryptPassword = response.rows[0].password
+          let decryptPassword = comparePasswordService({password, encryptPassword})
+
+          if (decryptPassword){
+            result.email = response.rows[0].email,
+            result.status = true;
+
+            return result;
+            
+          } else {
+            result.status = false;
+
+            return result;
+          }
         } catch (e) {
           console.log("Error: ", e);
         }
@@ -29,9 +47,12 @@ const userQuery = ({connects, model}) => {
         try {
             const {email, password, role, status} = entity;
             const User = model.UserModel;
+
+            let encryptedpwd = encryptPasswordService({password})
+            
             const response = await User.create({
                 email: email,
-                password: password,
+                password: encryptedpwd,
                 role: role,
                 status: status,
             });
