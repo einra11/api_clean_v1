@@ -27,9 +27,9 @@ const bookQuery = ({connects, model}) => {
         }
     }
 
-    async function createBook({ resdata }){
+    async function createBook({ entity }){
         try {
-            const {title, author, rating, serial} = resdata;
+            const {title, author, rating, serial} = entity;
             //Later will add relation for the books and users
             const Book = model.BookModel;
             const response = await Book.create({
@@ -44,11 +44,11 @@ const bookQuery = ({connects, model}) => {
         }
     }
 
-    async function updateBook ({resdata}){
+    async function updateBook ({entity}){
         
         //get first the id of the book via check its serial
-        const {title, author, rating, serial} = resdata;
-        const bookId = await getBookId({resdata})
+        const {title, author, rating, serial} = entity;
+        const bookId = await getBookId({entity})
 
         if (bookId){
             try {

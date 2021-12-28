@@ -5,9 +5,9 @@ const createBook = ({ bookDB, registerBook_ENTITY }) => {
 
         let result = {};
 
-        let resdata = await registerBook_ENTITY({ data });
+        let entity = await registerBook_ENTITY({ data });
 
-        const {serial} = resdata;
+        const {serial} = entity;
        
 
         const distinctBook = await bookDB.distinctBook({serial});
@@ -17,7 +17,7 @@ const createBook = ({ bookDB, registerBook_ENTITY }) => {
             throw new Error("Duplicated serial has been detected")
         }
         
-        const res = await bookDB.createBook({resdata});
+        const res = await bookDB.createBook({entity});
 
         if (res) {
             result.title = res.title;
