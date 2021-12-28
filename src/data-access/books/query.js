@@ -47,7 +47,9 @@ const bookQuery = ({connects, model}) => {
     async function updateBook ({entity}){
         
         //get first the id of the book via check its serial
+       
         const {title, author, rating, serial} = entity;
+
         const bookId = await getBookId({entity})
 
         if (bookId){
@@ -88,12 +90,12 @@ const bookQuery = ({connects, model}) => {
         }
       }
 
-    async function getBookId({ resdata }) {
+    async function getBookId({ entity }) {
         try {
           const conn = await connects();
           const result = await new Promise((resolve) => {
             let sql = `SELECT id FROM books WHERE "id" = $1`;
-            let params = [resdata.id];
+            let params = [entity.id];
             conn.query(sql, params, (err, res) => {
                 conn.end();
               if (err) resolve(err);
