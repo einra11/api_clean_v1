@@ -8,8 +8,8 @@ import cors from 'cors';
 export const app = express();
 
 //Route imports section
-import bookRoute from './routes/book/index'
-import userRoute from './routes/user/index'
+import {bookRoute} from './routes/book/index'
+import {userRoute} from './routes/user/index'
 //--------------------------
 
 const port = 4032;
