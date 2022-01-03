@@ -5,7 +5,8 @@ const bookQuery = ({connects, model}) => {
         createBook,
         getBookId,
         updateBook,
-        removeBook
+        removeBook,
+        getBook
       });
 
     async function getAllBooks({}){
@@ -107,6 +108,25 @@ const bookQuery = ({connects, model}) => {
           console.log("Error: ", e);
         }
       }
+
+      
+    async function getBook({ id }) {
+      try {
+        const conn = await connects();
+        const result = await new Promise((resolve) => {
+          let sql = `SELECT * FROM books WHERE id = $1`;
+          let params = [id];
+          conn.query(sql, params, (err, res) => {
+              conn.end();
+            if (err) resolve(err);
+            resolve(res);
+          });
+        });
+        return result;
+      } catch (e) {
+        console.log("Error: ", e);
+      }
+    }
 
     async function distinctBook ({ serial }){
         try {
