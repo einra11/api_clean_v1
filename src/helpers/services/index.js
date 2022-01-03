@@ -7,7 +7,7 @@ const encryptPasswordService = encryptPassword({bcrypt});
 const comparePasswordService = comparePassword({bcrypt});
 
 
-const services = new Object.freeze ({
+const services = Object.freeze ({
     encryptPasswordService,
     comparePasswordService
 })

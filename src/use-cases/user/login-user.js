@@ -1,7 +1,6 @@
 import jwt from '../../helpers/jwt'
 const loginUser = ({ userDb, loginUSER_ENTITY }) => {
     return async function list(data) {
-      const {email, password} = data;
 
       let entity = await loginUSER_ENTITY({data});
       let token = "";
@@ -9,18 +8,20 @@ const loginUser = ({ userDb, loginUSER_ENTITY }) => {
 
       const res = await userDb.loginUser({entity})
 
-      if (res.rows.length == 1){
-        let row = res.rows[0];
-        let email = row.email;
+      const {email,status} = res
+
+      if (status){
         token = jwt.issue({email: email}, '1d')
 
         result.email = email;
         result.token = token;
-
         return {
           message: "Successfully logged in",
           user : result, 
         }
+      }
+      else{
+        throw new Error("Password did not match")
       }
 
     };
