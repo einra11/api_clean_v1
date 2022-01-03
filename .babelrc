@@ -2,6 +2,32 @@
 //     "presets": ["es2015", "react", "stage-0"],
 //     "plugins": ["transform-runtime", "@babel/plugin-proposal-object-rest-spread"]
 //   }
+// {
+//   "plugins": ["transform-object-rest-spread"]
+// }
+
 {
-  "plugins": ["transform-object-rest-spread"]
-}
+  // Original .babelrc content...
+  
+  "env": {
+  "test": {
+  "presets": [
+  "env"
+  // Add any additional presets required by your project.
+  // like "react" for example.
+  ],
+  "plugins": [
+    "transform-object-rest-spread"
+  // Add any Babel plugins required by your project.
+  // Most of the time you can remove this section entirely
+  // if you already defined your plugins somewhere up the file.
+  ]
+  }
+  },
+  "plugins": [
+    "transform-object-rest-spread"
+  // Add any Babel plugins required by your project.
+  // Most of the time you can remove this section entirely
+  // if you already defined your plugins somewhere up the file.
+  ]
+  }

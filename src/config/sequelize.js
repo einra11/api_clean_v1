@@ -10,4 +10,3 @@ export default new Sequelize (
         omitNull : true
     }
 )
-console.log("Sequelize instance executed");

@@ -1,26 +1,24 @@
-const updateBook = ({data}) => {
-    const {title,author, id} = data;
+const updateBook = ({prevData, data}) => {
+    let {title,author, id} = data;
 
 
     let rating = data.ratings;
     let serial_holder = data.serial;
 
     if(!title) {
-        throw new Error("Book must have a title");
+       title = prevData.title;
     }
     if(!author) {
-        throw new Error("Book must have a author");
+        author = prevData.author;
     }
     if (!rating){
-        rating = 0;
+        rating = prevData.ratings;
     }
     if (rating > 5){
         throw new Error("Inputed rating must not exceed 5");
     }
     if (!serial_holder){
-        //Generate new unique serial
-        const d = new Date();
-        serial_holder = d.getMilliseconds() + "PFERD_IN_DER_WAND"
+        serial_holder =  prevData.serial
     }
     if(!id){
         throw new Error("Request error ID not found");

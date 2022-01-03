@@ -8,8 +8,8 @@ import cors from 'cors';
 export const app = express();
 
 //Route imports section
-import bookRoute from './routes/book/index'
-import userRoute from './routes/user/index'
+import {bookRoute} from './routes/book/index'
+import {userRoute} from './routes/user/index'
 //--------------------------
 
 const port = 4032;
@@ -36,4 +36,6 @@ app.use("/api/users", userRoute);
 app.use(async (req, res) => {
     res.status(404).send("Route unavailable.");
 });
+
+export default {app};
 
