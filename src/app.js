@@ -37,5 +37,5 @@ app.use(async (req, res) => {
     res.status(404).send("Route unavailable.");
 });
 
-export default {app, server};
+export default {app};
 
