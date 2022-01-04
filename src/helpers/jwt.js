@@ -1,11 +1,11 @@
 import jwt from 'jsonwebtoken'
-import config from '../config/config'
+import JWTSecret from '../config/config'
 
-const secret = "PFERD_IN_DER_WAND"
+
 
 export default {
     issue(payload, expiresIn){
-        return jwt.sign(payload, config.JWTSecret, {
+        return jwt.sign(payload, JWTSecret.JWTSecret, {
             expiresIn,
         })
     }

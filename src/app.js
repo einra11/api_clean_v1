@@ -2,8 +2,8 @@ import express from 'express';
 import cors from 'cors';
 
 //import tokenizers
-// import { configureJWTStrat } from './helpers/passport/passport-jwt'
-// import passport from 'passport'
+import { configureJWTStrat } from './helpers/passport/passport-jwt'
+import passport from 'passport'
 
 export const app = express();
 
@@ -19,8 +19,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// app.use(passport.initialize());
-// configureJWTStrat();
+app.use(passport.initialize());
+configureJWTStrat();
 
 
 export var server = app.listen(port, () => {
