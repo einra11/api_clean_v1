@@ -13,7 +13,6 @@ const softDelete = ({ softDeleteUserUseCase }) => {
           id: httpRequest.params.id,
         };
         const user = await softDeleteUserUseCase(toView);
-        console.log('\x1b[32m%s\x1b[0m', "CONTROLLER_TRIGGERED")
         return {
           headers: {
             "Content-Type": "application/json",

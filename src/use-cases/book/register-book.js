@@ -3,7 +3,6 @@ const createBook = ({ bookDB, registerBook_ENTITY }) => {
 
          //Steps: Use entity validation -> check dulplication from the validated
 
-        let result = {};
 
         let entity = await registerBook_ENTITY({ data });
 
@@ -20,14 +19,13 @@ const createBook = ({ bookDB, registerBook_ENTITY }) => {
         const res = await bookDB.createBook({entity});
 
         if (res) {
-            result.title = res.title;
-            result.author = res.author;
-            result.rating = res.ratings;
-            result.serial = res.serial;
-
+        
             return {
                 message: "Book registered succesfully",
-                book: { result }
+                title : res.title,
+                author : res.author,
+                rating : res.ratings,
+                serial : res.serial,
             }
         }
         else {

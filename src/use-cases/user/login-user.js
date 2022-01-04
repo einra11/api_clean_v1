@@ -4,7 +4,6 @@ const loginUser = ({ userDb, loginUSER_ENTITY }) => {
 
       let entity = await loginUSER_ENTITY({data});
       let token = "";
-      let result = {}
 
       const res = await userDb.loginUser({entity})
 
@@ -13,11 +12,10 @@ const loginUser = ({ userDb, loginUSER_ENTITY }) => {
       if (status){
         token = jwt.issue({email: email}, '1d')
 
-        result.email = email;
-        result.token = token;
         return {
           message: "Successfully logged in",
-          user : result, 
+          email:  email,
+          token : token
         }
       }
       else{

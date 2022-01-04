@@ -3,7 +3,7 @@ const userLogin = ({ data }) => {
     console.log(data);
     const { email, password } = data;
     if (!email) {
-      throw new Error("Please enter username");
+      throw new Error("Please enter email");
     }
     if (!password) {
       throw new Error("Please enter password");

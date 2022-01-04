@@ -13,7 +13,6 @@ const register = ({ createUserUseCase }) => {
           source,
         };
         const user = await createUserUseCase(toView);
-        console.log('\x1b[32m%s\x1b[0m', "CONTROLLER_TRIGGERED")
         return {
           headers: {
             "Content-Type": "application/json",
