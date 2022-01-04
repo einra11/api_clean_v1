@@ -7,7 +7,7 @@ const userCreate = ({ data }) => {
     let userStatus = status;
 
     if (!email) {
-      throw new Error("Please enter username");
+      throw new Error("Please enter email");
     }
     if (!password) {
       throw new Error("Please enter password");
