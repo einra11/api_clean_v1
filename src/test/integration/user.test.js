@@ -122,3 +122,13 @@ describe("POST/REGISTER /api/users endpoint", () =>{
 
 })
 
+describe("PATCH/SOFT DELETE /api/users/:id endpoint", () =>{
+    it("should response with no error and a status code of 200", async ()=>{
+        const response = await request(app)
+        .patch("/api/users/60")
+
+        console.log(response.body.error || "No errors found -> Pass")
+        expect(response.statusCode).toBe(200)
+    })
+})
+
