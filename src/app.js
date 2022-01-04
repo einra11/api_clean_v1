@@ -23,9 +23,9 @@ app.use(passport.initialize());
 configureJWTStrat();
 
 
-export var server = app.listen(port, () => {
-    console.log(`Server is running at PORT http://localhost:${port}`);
-});
+// export var server = app.listen(port, () => {
+//     console.log(`Server is running at PORT http://localhost:${port}`);
+// });
 
 //Initialize routes
 app.use("/api/books", bookRoute);
