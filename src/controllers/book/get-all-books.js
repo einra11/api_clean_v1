@@ -14,7 +14,6 @@ const getAllBooks = ({ getAllBooksUseCase }) => {
         };
         const bookList = await getAllBooksUseCase(toView);
         console.log('\x1b[32m%s\x1b[0m', "CONTROLLER_TRIGGERED")
-        console.log(bookList)
         return {
           headers: {
             "Content-Type": "application/json",

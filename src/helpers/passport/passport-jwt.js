@@ -1,35 +1,28 @@
-import userDb from "../../data-access/users/index"
-import {loginUSER_ENTITY} from "../../entities/user/index"
 import Passport from "passport";
 import PassportJWT from 'passport-jwt'
+import SECRET_KEY from '../../config/config'
+import UserDb from '../../data-access/users/index'
 
-export const configureJWTStrat = ({userDb, loginUSER_ENTITY}) =>{
-    return async function tokenize(data){
-        const opts = {
-                jwtFromRequest: PassportJWT.ExtractJwt.fromAuthHeaderAsBearerToken(),
-                secretOrKey : "PFERD_IN_DER_WAND"
-        }
-        let entity = await loginUSER_ENTITY({data});
 
-        Passport.use(new PassportJWT.Strategy(opts,(paylod, done) =>{
-            
-            try {
-                
-            } catch (error) {
-                
-            }
-        }))
+export const configureJWTStrat = () =>{
+    const opts = {
+        jwtFromRequest: PassportJWT.ExtractJwt.fromAuthHeaderAsBearerToken(),
+        secretOrKey : SECRET_KEY.JWTSecret
     }
-  
+    Passport.use(new PassportJWT.Strategy(opts, async (paylod, done) => {
+        const {email} = paylod;
+        try {
+            const verified = await UserDb.authenticate({email})
+
+            if (verified) {
+                return done(null, true);
+            }else{
+                return done(null, false);
+            }
+        } catch (error) {
+            return done(error, false);
+        }
+
+
+    }));
 }
-
-
-// const opts = {
-//     jwtFromRequest: PassportJWT.ExtractJwt.fromAuthHeaderAsBearerToken(),
-//     secretOrKey : "PFERD_IN_DER_WAND"
-// }
-// Passport.use(new PassportJWT.Strategy(opts,(paylod, done) => {
-//     const data = paylod
-//     let entity = loginUSER_ENTITY({data});
-    
-// }));
