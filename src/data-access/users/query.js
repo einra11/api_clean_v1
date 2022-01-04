@@ -4,8 +4,31 @@ const userQuery = ({connects, model, encryptPasswordService, comparePasswordServ
         createUser,
         isExisting,
         softDelete,
-        getUserId
+        getUserId,
+        authenticate
       });
+
+    async function authenticate({ email }){
+      //later we will check token from db
+      try {
+        const conn = await connects();
+        let result = {}
+
+        const response = await new Promise((resolve) => {
+          let sql = `SELECT email, password FROM users WHERE "email" = $1`;
+          let params = [email];
+          conn.query(sql, params, (err, res) => {
+              conn.end();
+            if (err) resolve(err);
+            resolve(res);
+          });
+        });
+        return response;
+        // console.log(response.rows[0].password, password);
+      } catch (e) {
+        console.log("Error: ", e);
+      }
+    }
 
     async function loginUser({ entity }){
        try {
