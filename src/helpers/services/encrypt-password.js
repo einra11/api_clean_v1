@@ -1,8 +1,8 @@
-const encryptPassword = ({ bcrypt }) => {
+const encryptPassword = ({ bcryptjs }) => {
     return function encode(data) {
         const { password } = data;
-        const salt = bcrypt.genSaltSync(10);
-        return bcrypt.hashSync(password, salt)
+        const salt = bcryptjs.genSaltSync(10);
+        return bcryptjs.hashSync(password, salt)
     };
   };
 

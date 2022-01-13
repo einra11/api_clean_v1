@@ -3,6 +3,8 @@ const createUser = ({ userDb, registerUser_ENTITY }) => {
 
          //Steps: Use entity validation -> check dulplication from the validated
 
+        const {email} = data;
+
         let result = {};
 
         let entity = await registerUser_ENTITY({ data });

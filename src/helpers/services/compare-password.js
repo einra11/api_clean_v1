@@ -1,9 +1,9 @@
-const comparePassword = ({ bcrypt }) => {
+const comparePassword = ({ bcryptjs }) => {
     return function encode(data) {
         
         const {password, encryptPassword} = data;
 
-        return bcrypt.compareSync(password, encryptPassword)
+        return bcryptjs.compareSync(password, encryptPassword)
     };
   };
 
