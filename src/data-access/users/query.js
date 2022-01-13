@@ -35,7 +35,6 @@ const userQuery = ({connects, model, encryptPasswordService, comparePasswordServ
           const conn = await connects();
           const {password} = entity;
           let result = {}
-
           const response = await new Promise((resolve) => {
             let sql = `SELECT email, password FROM users WHERE "email" = $1`;
             let params = [entity.email];
@@ -45,6 +44,8 @@ const userQuery = ({connects, model, encryptPasswordService, comparePasswordServ
               resolve(res);
             });
           });
+
+
           // console.log(response.rows[0].password, password);
           
           let encryptPassword = response.rows[0].password
