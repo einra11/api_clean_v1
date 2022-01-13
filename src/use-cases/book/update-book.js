@@ -16,10 +16,6 @@ const updateBook = ({ bookDB, updateBook_ENTITY }) => {
             if (res) {
                 return {
                 message: "Book updated succesfully",
-                   title : res.title,
-                   author : res.author,
-                   rating : res.ratings,
-                   serial : res.serial,
                 }
             }
             else {
