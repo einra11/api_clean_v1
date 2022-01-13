@@ -24,7 +24,7 @@ configureJWTStrat();
 
 
 export var server = app.listen(port, () => {
-    console.log(`🔥📕Server is running at http://localhost:${port}`);
+    console.log(`🚀 Server is running at http://localhost:${port}`);
 });
 
 //Initialize routes
