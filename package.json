@@ -4,7 +4,7 @@
   "description": "Demo for clean REST API",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/app.js --exec babel-node --presets env",
+    "start": "nodemon -L src/app.js --exec babel-node --presets env",
     "build": "babel src -d dist --source-maps inline --copy-files",
     "serve": "node dist/app.js",
     "test": "jest --detectOpenHandles --forceExit"
