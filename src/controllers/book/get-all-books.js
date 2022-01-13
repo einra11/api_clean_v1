@@ -12,7 +12,7 @@ const getAllBooks = ({ getAllBooksUseCase }) => {
           ...info,
           source,
         };
-        const bookList = await getAllBooksUseCase(toView);
+        const bookList = await getAllBooksUseCase();
 
         return {
           headers: {

@@ -14,14 +14,14 @@ const updateBook = ({ updateBookUseCase }) => {
           id: httpRequest.params.id,
         };
         // console.log(toView);
-        const bookList = await updateBookUseCase(toView);
+        const response = await updateBookUseCase(toView);
        
         return {
           headers: {
             "Content-Type": "application/json",
           },
           statusCode: 200,
-          body: { bookList },
+          body: { response },
         };
       } catch (e) {
         console.log(e);
