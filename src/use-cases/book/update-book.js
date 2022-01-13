@@ -12,18 +12,9 @@ const updateBook = ({ bookDB, updateBook_ENTITY }) => {
             let entity = await updateBook_ENTITY({ prevData, data });
             const res = await bookDB.updateBook({entity});
 
-            let result = {};
-
-
-            if (res) {
-                result.title = res.title;
-                result.author = res.author;
-                result.rating = res.ratings;
-                result.serial = res.serial;
-    
+            if (res) {    
                 return {
                     message: "Book updated succesfully",
-                    book: { result }
                 }
             }
             else {

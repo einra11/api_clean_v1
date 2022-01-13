@@ -8,8 +8,8 @@ const removeBook = ({ bookDB }) => {
 
       let msg = `Item was not deleted, please try again`;
       if (res == 1) {
-        msg = `Item deleted successfully.`
-        return msg;
+        message = `Item deleted successfully.`
+        return message;
       }else {
         throw new Error("ID not found");
       }

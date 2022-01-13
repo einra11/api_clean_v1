@@ -12,7 +12,7 @@ const getAllBooks = ({ getAllBooksUseCase }) => {
           ...info,
           source,
         };
-        const bookList = await getAllBooksUseCase(toView);
+        const bookList = await getAllBooksUseCase();
         console.log('\x1b[32m%s\x1b[0m', "CONTROLLER_TRIGGERED")
         return {
           headers: {
