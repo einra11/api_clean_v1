@@ -5,6 +5,9 @@ services:
     build: .
     ports:
     - '4032:4032'
+    volumes:
+      - .:/app
+      - /app/node_modules
   db:
     image: 'postgres'
     environment:
