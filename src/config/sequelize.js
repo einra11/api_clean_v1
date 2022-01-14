@@ -5,7 +5,7 @@ export default new Sequelize (
     "postgres",
     "12345",
     {
-        host : "localhost",
+        host : "db",
         dialect : "postgres",
         omitNull : true
     }

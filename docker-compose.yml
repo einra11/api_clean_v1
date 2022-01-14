@@ -7,9 +7,12 @@ services:
     - '4032:4032'
   db:
     image: 'postgres'
-    ports: 
-    - '4432:5432'
     environment:
       POSTGRES_PASSWORD: '12345'
       POSTGRES_USER: 'postgres'
       POSTGRES_DB: 'book_api'
+    volumes:
+      - data:/var/lib/postgresql/data
+      
+volumes:
+  data:

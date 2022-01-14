@@ -45,8 +45,6 @@ const userQuery = ({connects, model, encryptPasswordService, comparePasswordServ
             });
           });
 
-
-          // console.log(response.rows[0].password, password);
           
           let encryptPassword = response.rows[0].password
           let decryptPassword = comparePasswordService({password, encryptPassword})

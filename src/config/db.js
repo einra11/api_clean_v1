@@ -21,7 +21,6 @@ const connect = ({ pg }) => {
           host: "db",
           password: "12345",
           database: "book_api",
-          port: "4432",
         };
   
       const pool = new Pool(config);
