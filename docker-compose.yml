@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  api:
+    build: .
+    ports:
+    - '4032:4032'
+  db:
+    image: 'postgres'
+    ports: 
+    - '4432:5432'
+    environment:
+      POSTGRES_PASSWORD: '12345'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_DB: 'book_api'

@@ -18,10 +18,10 @@ const connect = ({ pg }) => {
       let config = null;
         config = {
           user: "postgres",
-          host: "localhost",
+          host: "db",
           password: "12345",
           database: "book_api",
-          port: "5432",
+          port: "4432",
         };
   
       const pool = new Pool(config);
