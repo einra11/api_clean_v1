@@ -45,7 +45,10 @@ const userQuery = ({connects, model, encryptPasswordService, comparePasswordServ
             });
           });
 
-          
+          if(response.rows == 0){
+            return result.status = false;
+          }
+
           let encryptPassword = response.rows[0].password
           let decryptPassword = comparePasswordService({password, encryptPassword})
 
@@ -61,7 +64,7 @@ const userQuery = ({connects, model, encryptPasswordService, comparePasswordServ
             return result;
           }
         } catch (e) {
-          console.log("Error: ", e);
+          console.log("Error: Failed to connect to database ");
         }
     }
 

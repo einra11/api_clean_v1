@@ -7,21 +7,27 @@ const loginUser = ({ userDb, loginUSER_ENTITY }) => {
 
       const res = await userDb.loginUser({entity})
 
-      const {email,status} = res
+      if (res == null) {
+        throw new Error("Network error")
+      } else{
+        const {email,status} = res
 
-      if (status){
-        token = jwt.issue({email: email}, '1d')
-
-        return {
-          message: "Successfully logged in",
-          email:  email,
-          token : token
+        if (status){
+          token = jwt.issue({email: email}, '1d')
+  
+          return {
+            message: "Successfully logged in",
+            email:  email,
+            token : token
+          }
+        }
+        else if(!status){
+          throw new Error("Credentials did not match")
+        }
+        else{
+          throw new Error("Network error")
         }
       }
-      else{
-        throw new Error("Password did not match")
-      }
-
     };
   };
 
