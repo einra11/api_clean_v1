@@ -5,8 +5,8 @@ import {
 } from "../../controllers/user/index"
 
 const userRoutes = ({userRouter, makeExpressCallback}) => {
-    userRouter.get("/", makeExpressCallback( loginUserController,));
-    userRouter.post("/", makeExpressCallback( registerUserController));
+    userRouter.post("/", makeExpressCallback( loginUserController,));
+    userRouter.post("/register", makeExpressCallback( registerUserController));
     userRouter.patch("/:id", makeExpressCallback(softDeleteUserController));
     return userRouter;
 }
