@@ -13,12 +13,20 @@ const loginUser = ({ userDb, loginUSER_ENTITY }) => {
         const {email,status} = res
 
         if (status){
-          token = jwt.issue({email: email}, '1d')
+          if(status == "inactive"){
+
+            throw new Error("Account is inactive failed to login!")
+
+          } else {
+
+            token = jwt.issue({email: email}, '1d')
   
-          return {
-            message: "Successfully logged in",
-            email:  email,
-            token : token
+            return {
+              message: "Successfully logged in",
+              email:  email,
+              token : token
+            }
+            
           }
         }
         else if(!status){

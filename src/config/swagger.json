@@ -74,6 +74,37 @@
                     }
                   }
             },
+
+            "/users/{id}" : {
+              "parameters" : [
+                  {
+                     "name" : "id",
+                     "in" : "path",
+                     "required" : "true",
+                     "description" : "Unique id a user",
+                     "type" : "string"
+                  },
+                  {
+                     "name": "authorization",
+                     "description": "Access token to authorized users",
+                     "in": "header",
+                     "type": "string",
+                     "required": "true"
+                   }
+              ],
+              "patch":{
+                "tags": ["Users"],
+                "summary": "API Endpoint to Soft Delete users",
+                "description" : "Soft Delete users in database",
+
+                "produces" : ["application/json"],
+                "responses":{
+                  "200":{
+                    "description" : "User soft deleted"
+                  }
+                }
+            }
+            },
             "/books" : {
              "post":{
                "tags": ["Books"],
@@ -167,7 +198,7 @@
                     "parameters":[
                       {
                         "name": "book",
-                        "description": "Accounts params to update book",
+                        "description": "Book params to update book",
                         "in": "body",
                         "schema" : {
                           "$ref" : "#definitions/UpdateBook"
@@ -177,7 +208,7 @@
                     "produces" : ["application/json"],
                     "responses":{
                       "200":{
-                        "description" : "Account updated",
+                        "description" : "book updated",
                         "schema": {
                          "$ref" : "#definitions/UpdateBook"
                         }
