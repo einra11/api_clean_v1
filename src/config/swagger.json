@@ -109,7 +109,7 @@
              "post":{
                "tags": ["Books"],
                "summary": "API Endpoint to register new book",
-               "description" : "Create encode new account in database",
+               "description" : "Create encode new book in database",
                "parameters":[
                  {
                    "name": "Book",
