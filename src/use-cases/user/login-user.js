@@ -10,7 +10,7 @@ const loginUser = ({ userDb, loginUSER_ENTITY }) => {
       if (res == null) {
         throw new Error("Network error")
       } else{
-        const {email,status} = res
+        const {id,email,status} = res
 
         if (status){
           if(status == "inactive"){
@@ -23,6 +23,7 @@ const loginUser = ({ userDb, loginUSER_ENTITY }) => {
   
             return {
               message: "Successfully logged in",
+              id: id,
               email:  email,
               token : token
             }
