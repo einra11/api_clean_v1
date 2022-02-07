@@ -31,6 +31,8 @@ export var server = app.listen(port, () => {
     console.log(`🚀 Server is running at http://localhost:${port}`);
 });
 
+console.log('test change');
+
 //Initialize routes
 app.use("/api/books", bookRoute);
 app.use("/api/users", userRoute);
