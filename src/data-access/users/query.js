@@ -36,7 +36,7 @@ const userQuery = ({connects, model, encryptPasswordService, comparePasswordServ
           const {password} = entity;
           let result = {}
           const response = await new Promise((resolve) => {
-            let sql = `SELECT email, password FROM users WHERE "email" = $1`;
+            let sql = `SELECT id, email, password, status FROM users WHERE "email" = $1`;
             let params = [entity.email];
             conn.query(sql, params, (err, res) => {
                 conn.end();
@@ -53,9 +53,10 @@ const userQuery = ({connects, model, encryptPasswordService, comparePasswordServ
           let decryptPassword = comparePasswordService({password, encryptPassword})
 
           if (decryptPassword){
+            result.id = response.rows[0].id,
             result.email = response.rows[0].email,
-            result.status = true;
-
+            result.status = response.rows[0].status;
+            
             return result;
             
           } else {

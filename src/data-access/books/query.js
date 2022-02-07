@@ -14,7 +14,7 @@ const bookQuery = ({connects, model}) => {
             const conn = await connects()
 
             const response = await new Promise((resolve) =>{
-                let sql = `SELECT * FROM books ORDER BY "id"`;
+                let sql = `SELECT * FROM books ORDER BY "id" DESC`;
                 conn.query(sql, (err, res) => {
                     conn.end();
                     if (err) resolve(err)

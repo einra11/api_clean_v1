@@ -4,10 +4,12 @@ import {
     softDeleteUserController
 } from "../../controllers/user/index"
 
+import passport from "passport";
+
 const userRoutes = ({userRouter, makeExpressCallback}) => {
-    userRouter.get("/", makeExpressCallback( loginUserController,));
-    userRouter.post("/", makeExpressCallback( registerUserController));
-    userRouter.patch("/:id", makeExpressCallback(softDeleteUserController));
+    userRouter.post("/", makeExpressCallback( loginUserController,));
+    userRouter.post("/register", makeExpressCallback( registerUserController));
+    userRouter.patch("/:id",passport.authenticate('jwt', {session: false}), makeExpressCallback(softDeleteUserController));
     return userRouter;
 }
 

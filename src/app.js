@@ -1,6 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 
+
+
+
 //import tokenizers
 import { configureJWTStrat } from './helpers/passport/passport-jwt'
 import passport from 'passport'
@@ -10,6 +13,7 @@ export const app = express();
 //Route imports section
 import {bookRoute} from './routes/book/index'
 import {userRoute} from './routes/user/index'
+import {swaggerRoute} from './routes/swaggerDocumentation/index'
 //--------------------------
 
 const port = 4032;
@@ -30,6 +34,7 @@ export var server = app.listen(port, () => {
 //Initialize routes
 app.use("/api/books", bookRoute);
 app.use("/api/users", userRoute);
+app.use("/api", swaggerRoute)
 
 //--------------------------
 

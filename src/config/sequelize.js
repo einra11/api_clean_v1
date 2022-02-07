@@ -7,6 +7,7 @@ export default new Sequelize (
     {
         host : "db",
         dialect : "postgres",
-        omitNull : true
+        omitNull : true,
+        port : 5431
     }
 )
