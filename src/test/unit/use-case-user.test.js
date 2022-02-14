@@ -3,13 +3,13 @@ import {
     createUserUseCase,
     softDeleteUserUseCase } from '../../use-cases/user/index'
 
-
+    let email = Buffer.from(Math.random().toString()).toString("base64").substr(10, 5);
 
     describe('Login user', () =>{
         it("will return token ", async() =>{
             const data ={
                 email: "admin@gmail.com",
-                password: "123"
+                password: "12345"
             }
            let result = await loginUserUseCase(data);
            console.log(result || `No errors found -> Pass`);
@@ -21,7 +21,7 @@ import {
     describe('Register user', () =>{
         it("will create new account and return message with no errors", async() =>{
             const data ={
-                email: "user@gmail.com",
+                email: `${email}user@gmail.com`,
                 password: "123",
                 role : "user",
                 status: 'pending'

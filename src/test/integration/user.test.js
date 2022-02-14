@@ -8,11 +8,11 @@ describe("GET/LOGIN /api/users endpoint", () =>{
             const response = await request (app)
             .get("/api/users")
             .send({
-                email: "admin@gmail.com",
-                password: "123"
+                email: "test@gmail.com",
+                password: "1234"
             })
             console.log(response.body.error|| "No errors found -> Pass")
-            expect(response.statusCode).toBe(200)
+            expect(response.body.user).not.toBeNull()
         })
     })
 
@@ -86,22 +86,6 @@ describe("POST/REGISTER /api/users endpoint", () =>{
             })
             console.log(response.body.error|| "No errors found -> Failed")
             expect(response.body.error).toBe("Please enter password")
-        })
-
-    })
-
-    
-    describe("Given data: email, password, , status", () =>{
-        it("should return default value of role  user", async ()=>{
-            const response = await request(app)
-            .post("/api/users")
-            .send({
-                "email": `${email}@gmail.com`,
-                "password" : "123",
-                "status": "active"
-            })
-            console.log(response.body.user.role|| "No errors found -> Pass")
-            expect(response.body.user.role).toBe("user")
         })
 
     })

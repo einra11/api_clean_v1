@@ -6,8 +6,8 @@ beforeEach(async () =>{
     let getTokenRes = await request (app)
     .get("/api/users")
     .send({
-        email: "admin@gmail.com",
-        password: "123"
+        email: "test@gmail.com",
+        password: "1234"
     })
     token = getTokenRes.body.user.token
 })
@@ -73,7 +73,6 @@ describe("POST /api/books Endpoint", () =>{
                 .send ({ 
                         title : "test",
                         author : "Author",
-                        serial : "123456789"
             })
             console.log(response.body.error|| "No errors found -> Pass, Expected to have default rating = 0")
             expect(response.body.bookList.book.result.rating).toBe(0);
@@ -127,9 +126,9 @@ describe("PATCH /api/books/:id Endpoint", () =>{
 
     
     describe("PATCH Given data : title, author, ratings, serial but wrong ID", () =>{
-        it("Should respond a status 500 Route not found", async () =>{
+        it("Should respond a status 400 Route not found", async () =>{
             const response = await request(app)
-                .patch("/api/books/69")
+                .patch("/api/books/999999")
                 .set('Authorization', `Bearer ${token}`)
                 .send({
                     title: "Updated titles",
@@ -137,7 +136,7 @@ describe("PATCH /api/books/:id Endpoint", () =>{
                     ratings : "5",
                 })
             console.log(response.body.error || "No errors found -> Failed")
-            expect(response.statusCode).toBe(400) &&  expect(response.body.error).toBe("Could not found id")
+           expect(response.body.error).toBe("Could not found id")
         })
     })
 
@@ -160,11 +159,11 @@ describe("DELETE /api/books/:id Enpoint Code", ()=>{
     describe("DELETE Code 400/Not Found or Id not found", ()=>{
         it("DELETE has id paramater provided", async () =>{
             const response = await request(app)
-                .delete("/api/books/43")
+                .delete("/api/books/99999999999")
                 .set('Authorization', `Bearer ${token}`)
                 
             console.log(response.body.error || "No errors found -> Pass")
-            expect(response.statusCode).toBe(400) &&  expect(response.body.error).toBe("Could not found id")
+            expect(response.body.error).toBe("ID not found")
         })
     })
 

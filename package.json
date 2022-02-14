@@ -7,7 +7,7 @@
     "start": "nodemon src/app.js --exec babel-node --presets env",
     "build": "babel src -d dist --source-maps inline --copy-files",
     "serve": "node dist/app.js",
-    "test": "jest --detectOpenHandles --forceExit"
+    "test": "jest test --detectOpenHandles --forceExit"
   },
   "keywords": [],
   "author": "",
@@ -43,5 +43,10 @@
     "jest": "^23.6.0",
     "nodemon": "^1.17.3",
     "supertest": "^6.1.6"
+  },
+  "jest": {
+    "reporters": [
+      "bamboo-jest-reporter"
+    ]
   }
 }
