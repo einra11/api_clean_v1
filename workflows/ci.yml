@@ -3,7 +3,7 @@ name: BFI CI
 
 on:
   pull_request:
-      branches: []
+      branches: [feature]
 
 
 jobs:
