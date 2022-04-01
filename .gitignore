@@ -4,3 +4,4 @@ node_modules
 dist
 docs.md
 coverage
+jest_html_reporters.html
