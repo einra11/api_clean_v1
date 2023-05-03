@@ -1,7 +1,8 @@
 name: Build
 
 on:
-  push:
+  pull_request:
+    types: [review_requested]
     branches:
       - docker-branch-feature
 
