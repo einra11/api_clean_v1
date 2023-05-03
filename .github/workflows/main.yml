@@ -2,7 +2,7 @@ name: Build
 
 on:
   pull_request:
-    types: [review_requested]
+    types: [opened, reopened]
     branches:
       - docker-branch-feature
 
