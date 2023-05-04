@@ -1,25 +1,14 @@
-name: Select Incoming Branch
+name: Select incoming branch from pull request
 
 on:
   pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
+    types: [opened, synchronize]
 
 jobs:
   select-branch:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Checkout pull request branch
         uses: actions/checkout@v2
-
-      - name: Get Incoming Branch
-        run: echo "::set-output name=branch::$(git rev-parse --symbolic-full-name HEAD)"
-
-      - name: Set Environment Variable
-        run: echo "BRANCH=${{ steps.get-incoming-branch.outputs.branch }}" >> $GITHUB_ENV
-
-      - name: Run Script
-        run: |
-          echo "The incoming branch is $BRANCH"
+        with:
+          ref: ${{ github.head_ref }}
