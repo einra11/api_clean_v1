@@ -1,20 +1,25 @@
-name: Example workflow
+name: Select Incoming Branch
 
 on:
   pull_request:
-    types: [opened]
+    types:
+      - opened
+      - reopened
+      - synchronize
 
 jobs:
-  example_job:
+  select-branch:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      
-    - name: Print current branch
-      run: echo "Current branch: ${{ github.ref }}"
-      
-    - name: Print incoming branch
-      run: echo "Incoming branch: ${{ github.head_ref }}"
-      if: github.event_name == 'pull_request'
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Get Incoming Branch
+        run: echo "::set-output name=branch::$(git rev-parse --symbolic-full-name HEAD)"
+
+      - name: Set Environment Variable
+        run: echo "BRANCH=${{ steps.get-incoming-branch.outputs.branch }}" >> $GITHUB_ENV
+
+      - name: Run Script
+        run: |
+          echo "The incoming branch is $BRANCH"
