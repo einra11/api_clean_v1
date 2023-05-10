@@ -2,9 +2,7 @@ name: Review and Integrity Checking
 
 on:
   push:
-    branches:
-      - main
-
+    branches: [docker-branch-feature, feature]
 
 jobs:
   build:
