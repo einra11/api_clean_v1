@@ -13,7 +13,6 @@ const updateBook = ({ updateBookUseCase }) => {
           source,
           id: httpRequest.params.id,
         };
-        // console.log(toView);
         const response = await updateBookUseCase(toView);
        
         return {

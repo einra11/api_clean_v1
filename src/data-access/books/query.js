@@ -55,7 +55,6 @@ const bookQuery = ({connects, model}) => {
 
         if (bookId){
             try {
-                // console.log(bookId.rows[0].id);
                 const Book = model.BookModel;
                 const response = await Book.update({
                    title: title,

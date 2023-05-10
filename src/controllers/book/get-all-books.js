@@ -8,10 +8,6 @@ const getAllBooks = ({ getAllBooksUseCase }) => {
         const { source = {}, ...info } = httpRequest.body;
         source.ip = httpRequest.ip;
         source.browser = httpRequest.headers["User-Agent"];
-        const toView = {
-          ...info,
-          source,
-        };
         const bookList = await getAllBooksUseCase();
 
         return {

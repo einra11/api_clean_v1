@@ -5,7 +5,7 @@ const softDelete = ({ softDeleteUserUseCase }) => {
       };
       try {
         
-        const { source = {}, ...info } = httpRequest.body;
+        const { source = {}} = httpRequest.body;
         source.ip = httpRequest.ip;
         source.browser = httpRequest.headers["User-Agent"];
         const toView = {
