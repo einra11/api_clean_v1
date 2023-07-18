@@ -20,7 +20,7 @@
     "express": "^4.16.3",
     "joi": "^17.5.0",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^7.1.0",
+    "mongoose": "^7.3.3",
     "mongoose-ip-address": "0.0.6",
     "mongoose-paginate": "^5.0.3",
     "morgan": "^1.9.0",
